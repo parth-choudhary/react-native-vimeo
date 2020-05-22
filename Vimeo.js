@@ -8,7 +8,8 @@ import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
 function getVimeoPageURL(videoId) {
-  return (`<iframe src="https://player.vimeo.com/video/` + videoId + `" width="400" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`
+  return (
+      'https://player.vimeo.com/video/' + videoId + '?playsinline=false&byline=false&title=false&autoplay=true&portrait=false'
   );
 }
 
@@ -17,15 +18,12 @@ function getVimeoPageURL(videoId) {
 export const injectedCode = `
 (function() {
 var originalPostMessage = window.postMessage;
-
 var patchedPostMessage = function(message, targetOrigin, transfer) {
   originalPostMessage(message, targetOrigin, transfer);
 };
-
 patchedPostMessage.toString = function() {
   return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage');
 };
-
 window.postMessage = patchedPostMessage;
 })();
 `;
@@ -109,7 +107,7 @@ export default class Vimeo extends React.Component {
           height: this.props.height
         }}
         injectedJavaScript={injectedCode}
-        source={{ html: getVimeoPageURL(this.props.videoId) }}
+        source={{ uri: getVimeoPageURL(this.props.videoId) }}
         scalesPageToFit={this.props.scalesPageToFit}
         scrollEnabled={false}
         onMessage={this.onBridgeMessage}
