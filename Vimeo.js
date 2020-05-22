@@ -8,7 +8,7 @@ import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
 function getVimeoPageURL(videoId) {
-  return (`<iframe src="https://player.vimeo.com/video/` + videoId + `" width="{video_width}" height="200" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`
+  return (`<iframe src="https://player.vimeo.com/video/` + videoId + `" width="100%" height="200" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`
   );
 }
 
