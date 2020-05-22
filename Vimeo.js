@@ -8,8 +8,7 @@ import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
 function getVimeoPageURL(videoId) {
-  return (
-      'https://player.vimeo.com/video/' + videoId + '?playsinline=false&byline=false&title=false&autoplay=true&portrait=false&fullscreen=true&allowfullscreen=true'
+  return (`<iframe src="https://player.vimeo.com/video/` + videoId + `" width="{video_width}" height="200" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`
   );
 }
 
@@ -110,7 +109,7 @@ export default class Vimeo extends React.Component {
           height: this.props.height
         }}
         injectedJavaScript={injectedCode}
-        source={{ uri: getVimeoPageURL(this.props.videoId) }}
+        source={{ html: getVimeoPageURL(this.props.videoId) }}
         scalesPageToFit={this.props.scalesPageToFit}
         scrollEnabled={false}
         onMessage={this.onBridgeMessage}
