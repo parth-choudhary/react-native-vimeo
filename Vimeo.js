@@ -9,7 +9,7 @@ import WebView from 'react-native-webview';
 
 function getVimeoPageURL(videoId) {
   return (
-      'https://player.vimeo.com/video/' + videoId + '?playsinline=false&byline=false&title=false&autoplay=true&portrait=false'
+      'https://player.vimeo.com/video/' + videoId + '?playsinline=false&byline=false&title=false&autoplay=true&portrait=false&fullscreen=true&allowfullscreen=true'
   );
 }
 
